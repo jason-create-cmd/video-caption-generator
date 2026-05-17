@@ -13,7 +13,7 @@
     "db:migrate:remote": "wrangler d1 migrations apply video-caption-db --remote"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "^5.1.1",
+    "@vitejs/plugin-react": "^6.0.2",
     "aws4fetch": "^1.0.20",
     "vite": "^7.2.7",
     "react": "^19.2.3",
