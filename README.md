@@ -4,7 +4,15 @@
 
 ---
 
-## 1. 架构
+## 1. Demo
+
+<video src="assets/demo.mp4" controls width="100%" poster="assets/demo-poster.jpg"></video>
+
+如果当前页面没有直接显示播放器，可以点击下面的预览图打开演示视频：
+
+[![Video Caption Generator demo](assets/demo-poster.jpg)](assets/demo.mp4)
+
+## 2. 架构
 
 - Pages：单页前端，示例入口 `https://caption.example.com`
 - Worker：`/api/*`，负责登录、上传签名、任务状态、Soniox webhook、字幕生成和清理
@@ -13,7 +21,7 @@
 - Soniox：Async Transcription，默认 model `stt-async-v4`
 - LLM：字幕文本润色，默认 DeepSeek，Gemini 作为备用；缺 key 或失败时自动回退原始字幕
 
-## 2. 字幕生成流程
+## 3. 字幕生成流程
 
 ```text
 视频上传
@@ -35,7 +43,7 @@
 - JSON 解析失败、source id 非法、空文本、超时或 API 失败时，任务仍完成，自动使用未润色字幕。
 - 旧任务不会自动重算；部署后只影响新任务。
 
-## 3. 字幕润色能力
+## 4. 字幕润色能力
 
 默认提示词目标是接近飞书妙记风格：短、准、自然、便于一眼读完。
 
@@ -56,7 +64,7 @@
 
 自定义提示词只作为该 job 的运行配置写入 D1 `subtitle_prompt` 字段；API key 仍只保存在 Cloudflare Worker Secrets，不会暴露到前端。
 
-## 4. ASS 样式
+## 5. ASS 样式
 
 ASS 生成会写入真实视频分辨率：
 
@@ -74,7 +82,7 @@ ASS 生成会写入真实视频分辨率：
 
 这样可以避免 `ffmpeg/libass` 因缺少 `PlayResX/PlayResY` fallback 到 `384x288`，导致字幕被异常放大。
 
-## 5. 本地开发
+## 6. 本地开发
 
 ```bash
 npm install
@@ -88,7 +96,7 @@ npm run dev
 
 Worker 本地地址：`http://127.0.0.1:8787`
 
-## 6. Cloudflare 资源
+## 7. Cloudflare 资源
 
 ```bash
 npx wrangler r2 bucket create video-caption-files
@@ -122,7 +130,7 @@ npx wrangler r2 bucket cors set video-caption-files --file cloudflare.r2.cors.js
 npx wrangler r2 bucket lifecycle set video-caption-files --file cloudflare.r2.lifecycle.json
 ```
 
-## 7. Secrets
+## 8. Secrets
 
 ```bash
 npx wrangler secret put SONIOX_API_KEY
@@ -169,7 +177,7 @@ npx wrangler secret put R2_SECRET_ACCESS_KEY
   -R2SecretAccessKey "xxx"
 ```
 
-## 8. 部署
+## 9. 部署
 
 ```bash
 npm test
@@ -192,7 +200,7 @@ curl -sS -D - https://caption.example.com/api/me
 
 未登录返回 `401 Unauthorized` 是正常结果，说明 `/api/*` 已进入 Worker。
 
-## 9. 本地合并命令
+## 10. 本地合并命令
 
 软字幕：
 
@@ -208,7 +216,7 @@ ffmpeg -i input.mp4 -vf "subtitles=subtitle.ass" -c:a copy output.mp4
 
 前端会在上传前读取视频宽高，并传给 Worker 写入 D1。ASS 生成阶段使用真实 `PlayResX/PlayResY`，避免 `ffmpeg/libass` 按 `384x288` fallback 放大字幕。
 
-## 10. 保留策略
+## 11. 保留策略
 
 - 原视频：完成后 24 小时删除。
 - 失败或卡住任务：创建后 72 小时删除。
