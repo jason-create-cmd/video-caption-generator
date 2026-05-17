@@ -1,0 +1,17 @@
+{
+  "rules": [
+    {
+      "id": "delete-temporary-uploads",
+      "enabled": true,
+      "conditions": {
+        "prefix": "uploads/"
+      },
+      "deleteObjectsTransition": {
+        "condition": {
+          "type": "Age",
+          "maxAge": 259200
+        }
+      }
+    }
+  ]
+}

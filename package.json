@@ -1,0 +1,40 @@
+{
+  "name": "video-caption-generator",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "worker:dev": "wrangler dev src/worker/index.ts --local",
+    "build": "tsc --noEmit && vite build",
+    "test": "vitest run",
+    "deploy:worker": "wrangler deploy",
+    "deploy:pages": "npm run build && wrangler pages deploy . --cwd dist --project-name video-caption-generator --commit-dirty=true",
+    "db:migrate:local": "wrangler d1 migrations apply video-caption-db --local",
+    "db:migrate:remote": "wrangler d1 migrations apply video-caption-db --remote"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^5.1.1",
+    "aws4fetch": "^1.0.20",
+    "vite": "^7.2.7",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260515.0",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.16",
+    "wrangler": "^4.54.0"
+  },
+  "description": "Generate captions and subtitle files from videos with Soniox and optional LLM polishing.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jason-create-cmd/video-caption-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jason-create-cmd/video-caption-generator/issues"
+  },
+  "homepage": "https://github.com/jason-create-cmd/video-caption-generator#readme"
+}

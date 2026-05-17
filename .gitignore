@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.wrangler/
+.dev.vars
+.env
+.env.*
+!.env.example
+*.local
+
+# Local deployment config copied from wrangler.toml.example
+wrangler.toml

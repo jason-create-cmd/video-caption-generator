@@ -1,0 +1,13 @@
+SONIOX_API_KEY=replace-with-soniox-key
+LLM_PROVIDER=deepseek
+LLM_API_KEY=
+GEMINI_API_KEY=
+DEEPSEEK_API_KEY=
+LLM_MODEL=
+LLM_BASE_URL=
+ADMIN_PASSWORD=replace-with-private-password
+SESSION_SECRET=replace-with-random-32-byte-string
+WEBHOOK_SECRET=replace-with-random-32-byte-string
+R2_ACCOUNT_ID=replace-with-cloudflare-account-id
+R2_ACCESS_KEY_ID=replace-with-r2-access-key-id
+R2_SECRET_ACCESS_KEY=replace-with-r2-secret-access-key

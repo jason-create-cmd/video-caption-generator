@@ -1,0 +1,26 @@
+name = "video-caption-generator-api"
+main = "src/worker/index.ts"
+compatibility_date = "2026-05-15"
+routes = [
+  { pattern = "caption.example.com/api/*", zone_name = "example.com" }
+]
+
+[observability]
+enabled = true
+
+[vars]
+PUBLIC_BASE_URL = "https://caption.example.com"
+R2_ACCOUNT_ID = "<your-cloudflare-account-id>"
+R2_BUCKET_NAME = "video-caption-files"
+
+[[r2_buckets]]
+binding = "FILES"
+bucket_name = "video-caption-files"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "video-caption-db"
+database_id = "<your-d1-database-id>"
+
+[triggers]
+crons = ["17 3 * * *"]

@@ -1,0 +1,2 @@
+ALTER TABLE jobs ADD COLUMN video_width INTEGER;
+ALTER TABLE jobs ADD COLUMN video_height INTEGER;
