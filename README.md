@@ -6,11 +6,7 @@
 
 ## 1. Demo
 
-<video src="https://jason-create-cmd.github.io/video-caption-generator/assets/demo.mp4" controls width="100%" poster="assets/demo-poster.jpg"></video>
-
-如果当前页面没有直接显示播放器，可以点击下面的预览图打开演示视频：
-
-[![Video Caption Generator demo](assets/demo-poster.jpg)](https://jason-create-cmd.github.io/video-caption-generator/assets/demo.mp4)
+https://github.com/user-attachments/assets/10ba97e3-22ef-43d7-a4c3-9003ad698fd5
 
 ## 2. 架构
 
